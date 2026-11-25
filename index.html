@@ -9,6 +9,10 @@
 @font-face{font-family:BeT;src:url(BeTomorrow-Light.ttf);font-weight:300}
 @font-face{font-family:BeT;src:url(BeTomorrow-Regular.ttf);font-weight:400}
 @font-face{font-family:BeT;src:url(BeTomorrow-Bold.ttf);font-weight:700}
+/* Arabic: Noto Sans Arabic (same Arabic face the client's content sheet uses; BeTomorrow Arabic not in the brand asset pack) */
+@font-face{font-family:NSA;src:url(NotoSansArabic-Light.ttf);font-weight:300}
+@font-face{font-family:NSA;src:url(NotoSansArabic-Regular.ttf);font-weight:400}
+@font-face{font-family:NSA;src:url(NotoSansArabic-SemiBold.ttf);font-weight:600}
 :root{--navy:#07114C;--blue:#1C6EE4;--teal:#31E7DF;--g100:#D7D9E2;--g200:#9CA0B7;--hud:rgba(156,160,183,.38);--hud2:rgba(156,160,183,.65);--guide:#ff2b2b}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;height:100%;overflow:hidden;background:#02040f;color:#fff;font-family:BeT,Arial,sans-serif;-webkit-font-smoothing:antialiased}
@@ -61,6 +65,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#02040f;color:#fff;f
 .m span{display:block;will-change:transform,opacity}
 .gl{display:block;width:150px;height:6px;background:linear-gradient(90deg,var(--blue),var(--teal));transform-origin:left;will-change:transform}
 .w{display:inline-block;white-space:pre;will-change:transform,opacity}
+.rtl{direction:rtl;text-align:right;font-family:NSA,Arial,sans-serif;letter-spacing:0}
+.rule2r{position:absolute;right:240px;width:420px;top:199px;height:5px;background:var(--teal);transform-origin:right}
+.glr{display:block;width:150px;height:6px;background:linear-gradient(270deg,var(--blue),var(--teal));transform-origin:right;will-change:transform}
 
 /* idle */
 #iLogo{position:absolute;left:240px;top:330px;width:560px;transform-origin:0 0;will-change:transform,opacity}
@@ -75,46 +82,65 @@ html,body{width:100%;height:100%;overflow:hidden;background:#02040f;color:#fff;f
 #iSub{position:absolute;left:246px;top:1360px;display:flex;align-items:center;gap:44px;font-size:76px;font-weight:300}
 #iHint{position:absolute;left:246px;top:1520px;font-size:56px;letter-spacing:.08em;color:var(--g100);display:flex;align-items:center;gap:26px}
 #iHint .ar{color:var(--teal);display:inline-block;will-change:transform}
-#iList{position:absolute;left:2380px;right:240px;top:660px}
-.irow{position:relative;display:flex;align-items:center;height:150px}
+#iList{position:absolute;left:2300px;right:240px;top:330px}
+.irow{position:relative;display:flex;align-items:center;height:136px}
 .irow .sep{position:absolute;left:0;right:0;top:0;height:2px;background:var(--hud2);transform-origin:left;will-change:transform}
 .irow .sepB{top:auto;bottom:0}
 .irow .acc{position:absolute;left:0;top:-1px;width:160px;height:5px;background:var(--teal);transform-origin:left;will-change:transform}
-.irow .n{width:200px;font-size:62px;letter-spacing:.08em;color:var(--teal);will-change:transform,opacity}
-.irow .t{font-size:74px;font-weight:300;will-change:transform,opacity}
+
+.irow .n{width:150px;font-size:56px;letter-spacing:.08em;color:var(--teal);will-change:transform,opacity}
+.irow .t{font-size:62px;font-weight:300;will-change:transform,opacity}
+.irow .ta{margin-left:auto;font-size:58px;font-weight:300;font-family:NSA,Arial,sans-serif;direction:rtl;will-change:transform,opacity}
+#iTitleA{position:absolute;right:240px;top:1064px;font-weight:300;font-size:150px;line-height:1.3}
+#iTitleA .m{padding:.05em 0 .12em;margin:-.05em 0 -.12em}
+#iSubA{position:absolute;right:246px;top:1330px;display:flex;align-items:center;gap:44px;font-size:72px;font-weight:300}
+#iHintA{position:absolute;right:246px;top:1496px;font-size:56px;color:var(--g100);display:flex;align-items:center;gap:26px}
+#iHintA .arw{color:var(--teal);display:inline-block;will-change:transform}
 .irow .hl{position:absolute;inset:2px 0;background:rgba(49,231,223,.1);transform-origin:left;opacity:0;will-change:transform,opacity}
 #iStroke{position:absolute;left:0;top:1686px;width:3840px;height:474px;pointer-events:none;overflow:hidden}
 #iStroke .win{position:absolute;left:0;top:0;width:130%;height:100%;overflow:hidden;will-change:transform;-webkit-mask-image:linear-gradient(to right,#000 76.9%,transparent 100%);mask-image:linear-gradient(to right,#000 76.9%,transparent 100%)}
 #iStroke img{position:absolute;left:0;top:0;width:3840px;will-change:transform}
 
-/* topic */
-#tBig{position:absolute;left:228px;top:262px;font-weight:200;font-size:220px;line-height:1;color:rgba(255,255,255,.04);-webkit-text-stroke:3px rgba(215,217,226,.45);letter-spacing:-.02em;will-change:transform,opacity}
-#tHead{position:absolute;left:240px;top:520px;font-weight:300;font-size:140px;line-height:1.02;letter-spacing:-.012em}
-#tHead .l2{padding-left:130px}
-#tHead.one .m:first-child{visibility:hidden}#tHead.one .l2{padding-left:0}  /* one-line headline sits on the second line, right above the tag */
-#tTag{position:absolute;left:240px;top:862px;display:flex;align-items:center;gap:40px;font-size:62px;font-weight:300}
-#tBody{position:absolute;left:240px;top:990px;width:1460px;font-size:56px;line-height:1.42;font-weight:400}
-#tListL{position:absolute;left:240px;top:1340px;font-size:40px;letter-spacing:.14em;color:var(--teal);will-change:opacity}
-#tList{position:absolute;left:240px;top:1410px;width:1460px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:124px;gap:26px 28px}
-.chip{position:relative;height:124px;display:flex;align-items:center;padding:12px 34px;line-height:1.12;font-size:42px;color:#fff;border:2px solid rgba(156,160,183,.45);background:rgba(255,255,255,.025);will-change:transform,opacity}
+/* topic: English column (left) · gallery (centre) · Arabic column (right), rows shared so both languages line up */
+#tBig{position:absolute;left:0;right:0;top:250px;text-align:center;font-weight:200;font-size:200px;line-height:1;color:rgba(255,255,255,.04);-webkit-text-stroke:3px rgba(215,217,226,.45);letter-spacing:-.02em;will-change:transform,opacity}
+#tGrid{position:absolute;left:240px;top:480px;width:3360px;display:grid;grid-template-columns:1000px 1fr 1000px}
+#tGrid .en{grid-column:1}#tGrid .rtl{grid-column:3}
+#tGrid .r1{grid-row:1}#tGrid .r2{grid-row:2;margin-top:44px}#tGrid .r3{grid-row:3;margin-top:52px}#tGrid .r4{grid-row:4;margin-top:64px}#tGrid .r5{grid-row:5;margin-top:24px}
+#tHead{font-weight:300;font-size:100px;line-height:1.06;letter-spacing:-.012em;white-space:nowrap}
+#tHead .l2{padding-left:64px}
+#tHead.one .m:first-child{visibility:hidden}#tHead.one .l2{padding-left:0}
+#tHeadA{align-self:end;font-weight:300;font-size:100px;line-height:1.3;white-space:nowrap}
+#tHeadA .m{padding:.04em 0 .14em;margin:-.04em 0 -.14em}
+.tag{display:flex;align-items:flex-start;gap:34px;font-size:50px;line-height:1.3;font-weight:300}
+.tag .gl,.tag .glr{flex:none;width:110px;margin-top:.62em}
+#tTagA{font-size:50px;line-height:1.55}
+#tTagA .glr{margin-top:.75em}
+#tBody{font-size:50px;line-height:1.45;font-weight:400}
+#tBodyA{font-size:48px;line-height:1.7;font-weight:400}
+#tListL,#tListLA{font-size:38px;letter-spacing:.14em;color:var(--teal);will-change:opacity}
+#tListLA{font-size:44px;letter-spacing:0}
+#tList,#tListA{display:grid;grid-template-columns:1fr;grid-auto-rows:92px;gap:16px}
+.chip{position:relative;height:92px;display:flex;align-items:center;padding:0 34px;line-height:1.12;font-size:40px;color:#fff;border:2px solid rgba(156,160,183,.45);background:rgba(255,255,255,.025);will-change:transform,opacity}
 .chip:before{content:"";position:absolute;left:-2px;top:-2px;width:8px;bottom:-2px;background:var(--teal)}
-#tQuote{position:absolute;left:240px;top:1790px;font-size:58px;font-weight:300;font-style:italic;color:var(--g100);will-change:opacity,transform}
-#tNote{position:absolute;left:240px;top:1340px;font-size:40px;letter-spacing:.1em;color:#ffc95c;opacity:0}
+#tListA .chip{font-size:42px}
+#tListA .chip:before{left:auto;right:-2px}
+#tNote{position:absolute;left:240px;top:1500px;font-size:40px;letter-spacing:.1em;color:#ffc95c;opacity:0}
+#tL2{left:0;right:0;text-align:center}
 /* gallery */
-#hero{position:absolute;left:1880px;top:262px;width:1720px;height:1340px}
+#hero{position:absolute;left:1360px;top:490px;width:1120px;height:1000px}
 /* no placeholder box: no fill, no frame. Each photo forms itself with a soft leading edge (130%-wide mask window, GPU transforms only) */
 .slot{position:absolute;inset:0;pointer-events:none}
-#hero .win{position:absolute;left:0;top:0;width:2236px;height:1340px;overflow:hidden;will-change:transform}
+#hero .win{position:absolute;left:0;top:0;width:1456px;height:1000px;overflow:hidden;will-change:transform}
 #hero .win.in{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 76.92%,transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 76.92%,transparent 100%)}
 #hero .win.out{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 23.08%,#000 100%);mask-image:linear-gradient(90deg,transparent 0,#000 23.08%,#000 100%)}
-.un{position:absolute;left:0;top:0;width:1720px;height:1340px;will-change:transform}
-.im{position:absolute;left:0;top:0;width:1720px;height:1340px;background-size:cover;background-position:center;filter:contrast(1.04)}
+.un{position:absolute;left:0;top:0;width:1120px;height:1000px;will-change:transform}
+.im{position:absolute;left:0;top:0;width:1120px;height:1000px;background-size:cover;background-position:center;filter:contrast(1.04)}
 .im.doc{background-size:100% 100%}
-#scan{position:absolute;left:0;top:0;width:4px;height:1340px;background:linear-gradient(180deg,rgba(49,231,223,0),rgba(49,231,223,.9) 20%,rgba(49,231,223,.9) 80%,rgba(49,231,223,0));box-shadow:0 0 24px rgba(49,231,223,.45);opacity:0;will-change:transform,opacity}
-#cap{position:absolute;left:1880px;top:1642px;font-size:42px;letter-spacing:.1em;color:var(--g100);will-change:opacity}
+#scan{position:absolute;left:0;top:0;width:4px;height:1000px;background:linear-gradient(180deg,rgba(49,231,223,0),rgba(49,231,223,.9) 20%,rgba(49,231,223,.9) 80%,rgba(49,231,223,0));box-shadow:0 0 24px rgba(49,231,223,.45);opacity:0;will-change:transform,opacity}
+#cap{position:absolute;left:1360px;width:1120px;text-align:center;top:1528px;font-size:42px;letter-spacing:.1em;color:var(--g100);will-change:opacity}
 #cap b{color:var(--teal);font-weight:400}
-#thumbs{position:absolute;left:1880px;top:1722px;width:1720px;display:flex;gap:16px}
-.th{position:relative;width:176px;height:128px;flex:none;background-size:cover;background-position:center;border:2px solid rgba(156,160,183,.3);opacity:.5;will-change:transform,opacity}
+#thumbs{position:absolute;left:1360px;top:1606px;width:1120px;display:flex;justify-content:center;gap:12px}
+.th{position:relative;width:112px;height:80px;flex:none;background-size:cover;background-position:center;border:2px solid rgba(156,160,183,.3);opacity:.5;will-change:transform,opacity}
 .th.on{border-color:var(--teal);opacity:1}
 .th .bar{position:absolute;left:0;bottom:-12px;height:5px;width:100%;background:var(--teal);transform-origin:left;transform:scaleX(0)}
 #tLogo{position:absolute;left:240px;top:2018px;width:480px;will-change:opacity}
@@ -143,21 +169,32 @@ html,body{width:100%;height:100%;overflow:hidden;background:#02040f;color:#fff;f
     <div id="iTitle"><div class="m"><span id="it1">Service &amp;</span></div><div class="m l2"><span id="it2">innovation awards</span></div></div>
     <div id="iSub"><i class="gl" id="iSubI"></i><span id="iSubT" style="display:inline-block">The foundation of training</span></div>
     <div id="iHint">Pick a holo tube to explore <span class="ar">→</span></div>
+    <div id="iTitleA" class="rtl" dir="rtl" lang="ar"><div class="m"><span id="itA">جوائز الخدمة والابتكار</span></div></div>
+    <div id="iSubA" class="rtl" dir="rtl" lang="ar"><i class="glr" id="iSubAI"></i><span id="iSubAT" style="display:inline-block">أسس التدريب</span></div>
+    <div id="iHintA" class="rtl" dir="rtl" lang="ar">اختر أنبوباً هولوغرافياً للاستكشاف <span class="arw">←</span></div>
     <div id="iList"></div>
   </div>
 
   <!-- TOPIC -->
   <div class="scene" id="topic" style="opacity:0">
     <div class="abs lbl" id="tL1" style="left:240px;top:110px">Service &amp; innovation awards</div>
-    <div class="abs lbl" id="tL2" style="right:240px;top:110px"></div>
-    <div class="rule" id="tR1"></div><div class="rule2" id="tR2"></div>
+    <div class="abs lbl" id="tL2" style="top:110px"></div>
+    <div class="abs lbl rtl" id="tL3" dir="rtl" lang="ar" style="right:240px;top:74px;font-size:58px">جوائز الخدمة والابتكار</div>
+    <div class="rule" id="tR1"></div><div class="rule2" id="tR2"></div><div class="rule2r" id="tR3"></div>
     <div id="tBig"></div>
-    <div id="tHead"><div class="m"><span id="th1"></span></div><div class="m l2"><span id="th2"></span></div></div>
-    <div id="tTag"><i class="gl" id="tTagI"></i><span id="tTagT" style="display:inline-block"></span></div>
-    <div id="tBody"></div>
-    <div id="tListL"></div><div id="tNote"></div>
-    <div id="tList"></div>
-    <div id="tQuote"></div>
+    <div id="tGrid">
+      <div class="en r1" id="tHead"><div class="m"><span id="th1"></span></div><div class="m l2"><span id="th2"></span></div></div>
+      <div class="rtl r1" id="tHeadA" dir="rtl" lang="ar"><div class="m"><span id="thA"></span></div></div>
+      <div class="en r2 tag" id="tTag"><i class="gl" id="tTagI"></i><span id="tTagT" style="display:inline-block"></span></div>
+      <div class="rtl r2 tag" id="tTagA" dir="rtl" lang="ar"><i class="glr" id="tTagAI"></i><span id="tTagAT" style="display:inline-block"></span></div>
+      <div class="en r3" id="tBody"></div>
+      <div class="rtl r3" id="tBodyA" dir="rtl" lang="ar"></div>
+      <div class="en r4" id="tListL"></div>
+      <div class="rtl r4" id="tListLA" dir="rtl" lang="ar"></div>
+      <div class="en r5" id="tList"></div>
+      <div class="rtl r5" id="tListA" dir="rtl" lang="ar"></div>
+    </div>
+    <div id="tNote"></div>
     <div id="hero"><div class="slot" id="sA"><div class="win in"><div class="un"><div class="im"></div></div></div></div><div class="slot" id="sB"><div class="win in"><div class="un"><div class="im"></div></div></div></div><i id="scan"></i>
     </div>
     <div id="cap"></div>
@@ -173,25 +210,37 @@ html,body{width:100%;height:100%;overflow:hidden;background:#02040f;color:#fff;f
 <script>
 /* ================= content (from the brief; Long service awards = placeholder until the content sheet arrives) ================= */
 const T=[
- {short:'Quarter Century Club',h:['The Quarter','Century Club'],tag:'Celebrating dedication and loyalty',
+ {short:'Quarter Century Club',h:['The Quarter','Century Club'],tag:'Celebrating dedication and loyalty.',
   body:'Established in 1960 to recognize employees completing 25 years of service.',listL:'Recognition included',
-  list:['Quarter Century Club membership','Service medals','Recognition events','Long service awards'],quote:'',
+  list:['Quarter Century Club membership','Service medals','Recognition events','Long service awards'],
+  ar:{h:'نادي ربع القرن',tag:'وفاءً لمن صنعوا مسيرة النجاح.',
+      body:'تأسس النادي عام 1960 لتكريم الموظفين الذين أتمّوا 25 عاماً من الخدمة.',listL:'أشكال التكريم',
+      list:['العضوية في نادي ربع القرن','أوسمة الخدمة والتقدير','الاحتفالات والمناسبات التكريمية','جوائز الخدمة الطويلة']},
   photos:['h1-01','h1-02','h1-03','h1-04','h1-05','h1-06','h1-07','h1-08','h1-doc'],doc:'The Islander · 1964'},
- {short:'Safety first',h:['Safety first'],tag:'Since 1965',
+ {short:'Safety first',h:['Safety first'],tag:'A safe workplace is everyone’s responsibility.',
   body:'Safety has always been central to Bapco’s success, supported by training, awareness and employee engagement.',listL:'Milestones',
-  list:['Bapco Safety School (1965)','Safety weeks and competitions','Accident-free awards','Emergency response training'],quote:'A safe workplace is everyone’s responsibility.',
+  list:['Bapco Safety School established (1965)','Safety weeks and competitions','Accident-free awards','Emergency response training'],
+  ar:{h:'السلامة أولاً',tag:'السلامة مسؤولية مشتركة وثقافة راسخة تبدأ بالفرد وتحمي الجميع.',
+      body:'شكّلت السلامة ركيزة أساسية في ثقافة العمل لدى بابكو، مدعومةً بالتدريب المستمر والتوعية وتعزيز مشاركة الموظفين في ترسيخ بيئة عمل آمنة.',listL:'محطات بارزة',
+      list:['تأسيس مدرسة السلامة في بابكو (1965)','اعتماد تنظيم أسابيع السلامة والبرامج التوعوية','جوائز التميّز في السلامة الخالية من الحوادث','التدريب على الاستجابة لحالات الطوارئ وإدارة المخاطر']},
   photos:['h2-01','h2-02','h2-03','h2-04','h2-05']},
- {short:'Zero Defects',h:['The Zero','Defects Program'],tag:'A quality initiative',
+ {short:'Zero Defects',h:['The Zero','Defects Program'],tag:'Quality is everyone’s responsibility.',
   body:'A quality initiative encouraging employees to strive for the highest standards of workmanship.',listL:'Recognition included',
-  list:['Zero Defects awards','Quality excellence awards','Team achievement awards','Man of the month recognition'],quote:'Quality is everyone’s responsibility.',
+  list:['Zero Defects awards','Quality excellence awards','Team achievement awards','Man of the month recognition'],
+  ar:{h:'برنامج العيوب الصفرية',tag:'الجودة تبدأ بالفرد وتتحقق بجهود الجميع.',
+      body:'أطلقت بابكو البرنامج لتعزيز ثقافة الجودة والإتقان، وتشجيع الموظفين على تحقيق أعلى معايير الأداء والتميز في بيئة العمل.',listL:'أشكال التكريم',
+      list:['جوائز العيوب الصفرية','جوائز التميّز في الجودة','جوائز الإنجاز الجماعي','تكريم موظف الشهر']},
   photos:['h3-01','h3-02','h3-03','h3-04','h3-05','h3-06','h3-07','h3-doc'],doc:'The Islander · 1969'},
- {short:'Good idea',h:['Good idea,','better performance'],tag:'Employee suggestion scheme',
+ {short:'Good idea',h:['Good idea,','better performance'],tag:'Every idea can make a difference.',
   body:'Employees were encouraged to improve efficiency, quality and safety through innovation and teamwork.',listL:'Recognition included',
-  list:['Good Idea awards','Employee suggestion awards','Cost saving awards','Innovation recognition'],quote:'Every idea can make a difference.',
+  list:['Good Idea awards','Employee suggestion awards','Cost saving awards','Innovation recognition'],
+  ar:{h:'فكرة جيدة، أداء أفضل',tag:'كل فكرة تصنع فرقاً.',
+      body:'شجّعت الشركة موظفيها على تطوير الكفاءة والجودة والسلامة من خلال الابتكار وروح العمل الجماعي.',listL:'أشكال التكريم',
+      list:['جوائز الأفكار المتميزة','جوائز مقترحات الموظفين','جوائز ترشيد التكاليف','التكريم تقديراً للابتكار']},
   photos:['h4-01','h4-02','h4-03','h4-04','h4-05','h4-06','h4-doc'],doc:'A Good Idea · 2 years of success'},
- {short:'Long service awards',h:['Long service','awards'],tag:'Honoring years of dedication',
-  body:'Celebrating employees whose years of service have shaped Bapco’s journey.',listL:'',
-  list:[],quote:'',note:'Placeholder — not in content sheet Rev 3, awaiting confirmation',
+ {short:'Long service awards',h:['Long service','awards'],tag:'Honoring years of dedication.',
+  body:'Celebrating employees whose years of service have shaped Bapco’s journey.',listL:'',list:[],
+  ar:{h:'',tag:'',body:'',listL:'',list:[]},note:'Placeholder — not in the content sheet, awaiting confirmation',
   photos:['h5-01','h5-02','h5-03','h5-04','h5-05','h5-06','h5-07','h5-08']}
 ];
 const SLIDE=5.5;   // seconds per gallery photo
@@ -230,7 +279,7 @@ $$('.tframe video').forEach(v=>{v.style.display='none';
   v.addEventListener('loadeddata',()=>{v.style.display='block';v.parentNode.querySelector('.ph').style.display='none';v.parentNode.querySelector('.pl').style.display='none';v.play().catch(()=>{});});
   v.addEventListener('error',()=>{v.remove();});});
 $('#iList').innerHTML=TT.map((t,i)=>`<div class="irow"><div class="sep"></div>${i===COUNT-1?'<div class="sep sepB"></div>':''}<div class="acc"></div><div class="hl"></div>
-  <div class="n">0${i+1}</div><div class="t">${t.short.charAt(0).toUpperCase()+t.short.slice(1)}</div></div>`).join('');
+  <div class="n">0${i+1}</div><div class="t">${t.short.charAt(0).toUpperCase()+t.short.slice(1)}</div><div class="ta" lang="ar">${t.ar.h}</div></div>`).join('');
 const PULSES=[{v:1,k:2,d:15,o:0},{v:1,k:11,d:19,o:6},{v:0,k:3,d:17,o:3},{v:1,k:7,d:21,o:10},{v:0,k:6,d:16,o:8},{v:1,k:14,d:18,o:4}];
 PULSES.forEach(p=>{const e=document.createElement('i');e.className=p.v?'pv':'phz';
   if(p.v)e.style.left=(120+240*p.k-1)+'px'; else e.style.top=(120+240*p.k-1)+'px'; $('#ambient').appendChild(e); p.el=e;});
@@ -249,7 +298,7 @@ $('#idleBtn').addEventListener('click',()=>select(-1));
 addEventListener('keydown',e=>{if(e.key>='1'&&e.key<=String(COUNT))select(+e.key-1); if(e.key==='0')select(-1); if(e.key==='r'||e.key==='R')startIntro(); if(e.key==='a'||e.key==='A')startAttract();});
 
 /* topic DOM */
-let words=[],chips=[],thumbs=[],cur=0,shown=0,slideT0=0,P=[];
+let words=[],chips=[],wordsA=[],chipsA=[],thumbs=[],cur=0,shown=0,slideT0=0,P=[];
 const DOC_AR={'h1-doc':1273/1692,'h3-doc':1253/1670,'h4-doc':880/1264};
 function buildTopic(i){
   const t=T[i];
@@ -258,19 +307,21 @@ function buildTopic(i){
   $('#tBody').innerHTML=t.body.split(/\s+/).map(w=>`<span class="w">${w} </span>`).join(''); words=$$('#tBody .w');
   $('#tListL').textContent=t.listL; $('#tNote').textContent=t.note||'';
   $('#tList').innerHTML=t.list.map(x=>`<div class="chip">${x}</div>`).join(''); chips=$$('#tList .chip');
-  $('#tQuote').textContent=t.quote?`“${t.quote}”`:'';
+  const A=t.ar; $('#thA').textContent=A.h; $('#tTagAT').textContent=A.tag; $('#tListLA').textContent=A.listL;
+  $('#tBodyA').innerHTML=A.body?A.body.split(/\s+/).map(w=>`<span class="w">${w} </span>`).join(''):''; wordsA=$$('#tBodyA .w');
+  $('#tListA').innerHTML=A.list.map(x=>`<div class="chip">${x}</div>`).join(''); chipsA=$$('#tListA .chip');
   P=t.photos.map(n=>({src:n+'.jpg',doc:n.endsWith('doc'),ar:DOC_AR[n]||1}));
   $('#thumbs').innerHTML=P.map(p=>`<div class="th${p.doc?' doc':''}" style="background-image:url(${p.src})"><i class="bar"></i></div>`).join(''); thumbs=$$('#thumbs .th');
   $('#tDots').innerHTML='Holo tube &nbsp;'+TT.map((_,k)=>`<i class="${k===i?'on':''}"></i>`).join('');
   cur=0; shown=0; setSlot($('#sA'),0); setSlot($('#sB'),0); slideT0=0;
 }
-function setSlot(slot,k){const im=slot.querySelector('.im'); const p=P[k]; im.style.backgroundImage=`url(${p.src})`; im.classList.toggle('doc',p.doc); im.style.width=(p.doc?Math.round(1340*p.ar):1720)+'px'; slot.__k=k;}
+function setSlot(slot,k){const im=slot.querySelector('.im'); const p=P[k]; im.style.backgroundImage=`url(${p.src})`; im.classList.toggle('doc',p.doc); const iw=p.doc?Math.round(1000*p.ar):1120; im.style.width=iw+'px'; im.style.left=Math.round((1120-iw)/2)+'px'; slot.__k=k;}
 // form a slot in ('in') or out ('out') along one shared soft edge; p 0..1
-const HW=1720, WW=HW*1.3, FADE=HW*.3;
+const HW=1120, WW=HW*1.3, FADE=HW*.3;
 function form(slot,mode,p){const w=slot.firstElementChild; if(slot.__m!==mode){w.classList.toggle('in',mode==='in');w.classList.toggle('out',mode==='out');slot.__m=mode;}
   const x=mode==='in'?(p-1)*WW:p*WW-FADE; set(w,{transform:`translate3d(${px(x)},0,0)`}); set(w.firstElementChild,{transform:`translate3d(${px(-x)},0,0)`});}
 function scan(p){const x=p*WW-FADE*.5; set($('#scan'),{transform:`translate3d(${px(x)},0,0)`,opacity:f3((x>0&&x<HW)?Math.sin(Math.PI*p)*.6:0)});}
-function capText(k){const p=P[k], t=T[sel]; return `<b>${'ABCDEFGHI'[k]}</b> &nbsp;${p.doc?(t.doc||'Archive document'):'Archive'} &nbsp;·&nbsp; ${k+1} / ${P.length}`;}
+function capText(k){return `<b>${k+1}</b> / ${P.length}`;}   // photo number only
 
 /* ================= render ================= */
 function renderIdle(t,K){
@@ -280,11 +331,15 @@ function renderIdle(t,K){
   const lp=eo(seg(t,.4,1.6)); set($('#iLogo'),{opacity:f3(lp),transform:`translate3d(0px,${px((1-lp)*40)},0) scale(1)`});
   [['#it1',1.0],['#it2',1.35]].forEach(([q,a])=>{const p=eoq(seg(t,a,a+1.4)),o=eo(seg(t,a,a+.9));set($(q),{transform:`translate3d(0,${((1-p)*105).toFixed(2)}%,0)`,opacity:f3(o)});});
   set($('#iSubI'),{transform:`scaleX(${f3(eio(seg(t,2.2,3.0)))})`}); const sp=eo(seg(t,2.5,3.4)); set($('#iSubT'),{opacity:f3(sp),transform:`translate3d(${px((1-sp)*-40)},0,0)`});
-  const hp=eo(seg(t,4.6,5.4)); set($('#iHint'),{opacity:f3(hp)});
+  const hp=eo(seg(t,4.6,5.4)); set($('#iHint'),{opacity:f3(hp)}); set($('#iHintA'),{opacity:f3(hp)});
+  {const p=eoq(seg(t,1.2,2.6)),o=eo(seg(t,1.2,2.1)); set($('#itA'),{transform:`translate3d(0,${((1-p)*105).toFixed(2)}%,0)`,opacity:f3(o)});}
+  set($('#iSubAI'),{transform:`scaleX(${f3(eio(seg(t,2.2,3.0)))})`}); set($('#iSubAT'),{opacity:f3(sp),transform:`translate3d(${px((1-sp)*40)},0,0)`});
+  set($('#iHintA .arw'),{transform:`translate3d(${px(t>5.4?-Math.max(0,Math.sin((t-5.4)*3))*22:0)},0,0)`});
   set($('#iHint .ar'),{transform:`translate3d(${px(t>5.4?Math.max(0,Math.sin((t-5.4)*3))*22:0)},0,0)`});
   $$('#iList .irow').forEach((r,i)=>{const a=2.6+i*.32, sl=eio(seg(t,a,a+.9)), tp=eo(seg(t,a+.25,a+1.1));
     $$('.sep',r).forEach(x=>set(x,{transform:`scaleX(${f3(sl)})`})); set(r.querySelector('.acc'),{transform:`scaleX(${f3(eio(seg(t,a+.3,a+1)))})`});
     ['.n','.t'].forEach((q,j)=>set(r.querySelector(q),{opacity:f3(eo(seg(t,a+.2+j*.12,a+1+j*.12))),transform:`translate3d(${px((1-tp)*-50)},0,0)`}));
+    set(r.querySelector('.ta'),{opacity:f3(eo(seg(t,a+.32,a+1.12))),transform:`translate3d(${px((1-tp)*50)},0,0)`});
     const cyc=t>6.5?((t-6.5)%10)/2:-1, k=cyc-i, on=(k>=0&&k<1)?Math.sin(Math.PI*k):0;
     set(r.querySelector('.hl'),{opacity:f3(on),transform:`scaleX(${f3(on>0?eio(cl(k*2.5)):0)})`});});
   // supergraphic draws in along the dead space (bottom-right), soft leading edge, then stays
@@ -293,15 +348,18 @@ function renderIdle(t,K){
 }
 function renderTopic(t,K){
   set($('#topic'),{opacity:f3(K)});
-  ['#tL1','#tL2'].forEach((q,i)=>{const p=eo(seg(t,.2+i*.15,1+i*.15));set($(q),{opacity:f3(p),transform:`translate3d(0,${px((1-p)*26)},0)`});});
-  set($('#tR1'),{transform:`scaleX(${f3(eio(seg(t,.1,1.2)))})`}); set($('#tR2'),{transform:`scaleX(${f3(eio(seg(t,.6,1.4)))})`});
+  ['#tL1','#tL2','#tL3'].forEach((q,i)=>{const p=eo(seg(t,.2+i*.15,1+i*.15));set($(q),{opacity:f3(p),transform:`translate3d(0,${px((1-p)*26)},0)`});});
+  set($('#tR1'),{transform:`scaleX(${f3(eio(seg(t,.1,1.2)))})`}); set($('#tR2'),{transform:`scaleX(${f3(eio(seg(t,.6,1.4)))})`}); set($('#tR3'),{transform:`scaleX(${f3(eio(seg(t,.6,1.4)))})`});
   const bp=eo(seg(t,.4,1.6)); set($('#tBig'),{opacity:f3(bp),transform:`translate3d(0,${px((1-bp)*80)},0) scale(${f3(1.04-.04*bp)})`});
-  [['#th1',.7],['#th2',.95]].forEach(([q,a])=>{const p=eoq(seg(t,a,a+1.2)),o=eo(seg(t,a,a+.8));set($(q),{transform:`translate3d(0,${((1-p)*110).toFixed(2)}%,0)`,opacity:f3(o)});});
-  set($('#tTagI'),{transform:`scaleX(${f3(eio(seg(t,1.7,2.4)))})`}); const tp=eo(seg(t,1.9,2.7)); set($('#tTagT'),{opacity:f3(tp),transform:`translate3d(${px((1-tp)*-40)},0,0)`});
-  words.forEach((w,i)=>{const a=2.3+i*.045,p=eo(seg(t,a,a+.8));set(w,{opacity:f3(p),transform:`translate3d(0,${px((1-p)*24)},0)`});});
-  set($('#tListL'),{opacity:f3(eo(seg(t,3.3,4.0)))}); set($('#tNote'),{opacity:f3(eo(seg(t,3.3,4.0)))});
-  chips.forEach((c,i)=>{const a=3.5+i*.16,p=eoq(seg(t,a,a+.8));set(c,{opacity:f3(p),transform:`translate3d(${px((1-p)*-40)},0,0)`});});
-  const qp=eo(seg(t,4.4,5.3)); set($('#tQuote'),{opacity:f3(qp),transform:`translate3d(0,${px((1-qp)*20)},0)`});
+  [['#th1',.7],['#th2',.95],['#thA',.95]].forEach(([q,a])=>{const p=eoq(seg(t,a,a+1.2)),o=eo(seg(t,a,a+.8));set($(q),{transform:`translate3d(0,${((1-p)*110).toFixed(2)}%,0)`,opacity:f3(o)});});
+  const tb=f3(eio(seg(t,1.7,2.4))), tp=eo(seg(t,1.9,2.7));
+  set($('#tTagI'),{transform:`scaleX(${tb})`}); set($('#tTagT'),{opacity:f3(tp),transform:`translate3d(${px((1-tp)*-40)},0,0)`});
+  set($('#tTagAI'),{transform:`scaleX(${tb})`}); set($('#tTagAT'),{opacity:f3(tp),transform:`translate3d(${px((1-tp)*40)},0,0)`});
+  const wd=(arr)=>{const n=Math.max(1,arr.length), step=Math.min(.045,1.5/n); arr.forEach((w,i)=>{const a=2.3+i*step,p=eo(seg(t,a,a+.8));set(w,{opacity:f3(p),transform:`translate3d(0,${px((1-p)*24)},0)`});});};
+  wd(words); wd(wordsA);
+  const lp=f3(eo(seg(t,3.6,4.3))); set($('#tListL'),{opacity:lp}); set($('#tListLA'),{opacity:lp}); set($('#tNote'),{opacity:lp});
+  chips.forEach((c,i)=>{const a=3.8+i*.16,p=eoq(seg(t,a,a+.8));set(c,{opacity:f3(p),transform:`translate3d(${px((1-p)*-40)},0,0)`});});
+  chipsA.forEach((c,i)=>{const a=3.8+i*.16,p=eoq(seg(t,a,a+.8));set(c,{opacity:f3(p),transform:`translate3d(${px((1-p)*40)},0,0)`});});
   // hero: no box — the first photo forms in, then a new photo forms over the last every SLIDE seconds (images never move)
   const HS=6.3, first=eio(seg(t,5.0,HS));   // gallery forms last, after the left column
   let idx=0, wipe=1;
